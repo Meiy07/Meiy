@@ -21,15 +21,13 @@ def add_time(start, duration, day=False):
     hours, mins = start.split(":")
     mins, period = mins.split(" ")
     dh, dm = duration.split(":")
-    hours = int(hours)  # start hour
-    mins = int(mins)  # start min
-    dh = int(dh)  # duration hours
-    dm = int(dm)  # duration mins
+    hours = int(hours)  
+    mins = int(mins)  
+    dh = int(dh)  
+    dm = int(dm) 
     period = period.strip().lower()  
     total_mins = mins + dm
     total_hours = hours + dh
-
-    #SHIFT MINUTES TO HOUR IF ITS OVER 60
     if total_mins >= 60:
         total_hours += int(total_mins / 60)
         total_mins = int(total_mins % 60)
@@ -55,13 +53,13 @@ def add_time(start, duration, day=False):
     remaining_hours = int(total_hours % half_day) or hours + 1
     remaining_mins = int(total_mins % 60)
     results = f'{remaining_hours}:{remaining_mins:02} {period.upper()}'
-    if day: # add day of the week
+    if day: 
         day = day.strip().lower()
         selected_day = int((week_days.index(day) + days_later) % 7)
         current_day = week_days[selected_day]
         results += f', {current_day.title()} {get_days_later(days_later)}'
 
-    else: # add days later
+    else:
         results = " ".join((results, get_days_later(days_later)))
 
     return results.strip()
